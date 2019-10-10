@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Rasterizer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2019</h1>
+<h1 align="middle">Project 1: Rasterizer</h1>
+<h2 align="middle">Raymond Ly, CS184-??</h2>
+
+<br><br>
+
+<div>
+
+<h2 align="middle">Overview</h2>
+<p>Give a high-level overview of what you implemented in this project. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the project.</p>
+
+<h2 align="middle">Section I: Rasterization</h2>
+
+<h3 align="middle">Part 1: Rasterizing single-color triangles</h3>
+
+<p>We rasterized triangles by first taking the bounds established by the vertices of a given triangle, sampling pixel by pixel within these bounds and outputting a color for any sampled points found within the edges of the triangle defined. We since we are only taking a single sample point per pixel, we know that our algorithm is only as inefficient as checking each pixel of the entirety of our bounding box.</p>
+
+  <img src="images/screenshot_2-13_16-34-53.png" align="middle" width="800px"/>
+  <!--<div align="middle">-->
+  <!--<table style="width=100%">-->
+    <!--<tr>-->
+      <!--<td>-->
+        <!--<img src="images/image1.png" align="middle" width="400px"/>-->
+        <!--<figcaption align="middle">Caption goes here.</figcaption>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<img src="images/image2.png" align="middle" width="400px"/>-->
+        <!--<figcaption align="middle">Caption goes here.</figcaption>-->
+      <!--</td>-->
+    <!--</tr>-->
+    <!--<br>-->
+    <!--<tr>-->
+      <!--<td>-->
+        <!--<img src="images/image3.png" align="middle" width="400px"/>-->
+        <!--<figcaption align="middle">Caption goes here.</figcaption>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<img src="images/image4.png" align="middle" width="400px"/>-->
+        <!--<figcaption align="middle">Caption goes here.</figcaption>-->
+      <!--</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</div>-->
+
+
+<h3 align="middle">Part 2: Antialiasing triangles</h3>
+
+  <p>Supersampling is implemented here by separating our pixels into some square number of sampling points(i.e. number of samples per side squared). With multiple samples per pixel, we take the average color value of that entire pixel and output that as the color of the pixel in our rasterized image. Supersampling helps us render rasterized images in a more accurate manner, as we have a better sense of the color gradient and discontinuities in our image since we sample at a denser rate.  </p>
+
+  <div align="middle">
+  <tr style="width=100%">
+    <tr>
+      <td>
+        <img src="images/screenshot_2-13_17-17-13.png" align="middle" width="400px"/>
+        <figcaption align="middle">Supersampling at rate 1 per pixel.</figcaption>
+      </td>
+      <td>
+        <img src="images/screenshot_2-13_17-17-24.png" align="middle" width="400px"/>
+        <figcaption align="middle">Supersampling at rate 4 per pixel.</figcaption>
+      </td>
+    </tr>
+    <td>
+      <img src="images/screenshot_2-13_17-17-44.png" align="middle" width="400px"/>
+      <figcaption align="middle">Supersampling at rate 16 per pixel.</figcaption>
+    </td>
+    </tr>
+
+    </tr>
+  </table>
+  </div>
+
+<h3 align="middle">Part 3: Transforms</h3>
+
+  <p>I had decided to render my own cubeman balancing himself on one foot, striking a pose as a a martial artist would in the crane stance.</p>
+  <img src="images/screenshot_2-13_17-34-34.png" align="middle" width="800px"/>
+
+<h2 align="middle">Section II: Sampling</h2>
+
+<h3 align="middle">Part 4: Barycentric coordinates</h3>
+
+  <p>Barycentric coordinates are something of a weighted coordinate system where values of the coordinates in question are determined by the "weight" each vertice surrounding it has on it. To show this, we can refer to a color triangle and see the effects of barycentric coordinates on color gradients. We do this by taking and normalizing the distance the point we are looking at to each edge of our rasterized triangle and assigning it a color value to match the weight each vertex has on it.</p>
+
+  <div align="middle">
+    <tr style="width=100%">
+    <tr>
+      <td>
+        <img src="images/ColorTri.png" align="middle" width="400px"/>
+        <figcaption align="middle">Color Triangle generated with Barycentric Coordinates.</figcaption>
+      </td>
+    </tr>
+    </table>
+  </div>
+
+<h3 align="middle">Part 5: "Pixel sampling" for texture mapping</h3>
+
+
+<h3 align="middle">Part 6: "Level sampling" with mipmaps for texture mapping</h3>
+
+
+
+<h2 align="middle">Section III: Art Competition</h2>
+<p>If you are not participating in the optional art competition, don't worry about this section!</p>
+
+<h3 align="middle">Part 7: Draw something interesting!</h3>
+
+</body>
+</html>
